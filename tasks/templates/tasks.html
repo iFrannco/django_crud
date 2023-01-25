@@ -10,26 +10,31 @@
       <tr>
         <th>
           <div class="text">
-            <a href="#">Name</a>
+            <p>Name</p>
           </div>
         </th>
         <th>
           <div class="text">
-            <a href="#">Date</a>
+            <p>Date</p>
           </div>
         </th>
         <th>
           <div class="text">
-            <a href="#">Start</a>
+            <p>Start</p>
           </div>
         </th>
         <th>
           <div class="text">
-            <a href="#">
-              <strong>Finish</strong>
-            </a>
+              <p>Finish</p>
           </div>
         </th>
+        {% if user.is_authenticated %}
+        <th>
+          <div class="text">
+            <p>Edit</p>
+          </div>
+        </th>
+        {% endif %}
       </tr>
     </thead>
 
@@ -40,7 +45,9 @@
         <td> {{task.date|date:"d/m/Y"}} </td>
         <td> {{task.starttime|time:"H:i"}} </td>
         <td> {{task.endtime|time:"H:i"}} </td>
-
+        {% if user.is_authenticated %}
+        <td> <a href="{% url 'task_detail' task.id %}">edit</a> </td>
+        {% endif %}
       </tr>
       {% endfor %}
     </tbody>
